@@ -1,4 +1,17 @@
-Swift 编码规范  
+郑重声明：  
+如果看不懂，估计是我翻译的不好  
+233333  
+
+##[原版](https://github.com/github/swift-style-guide) 戳这里  
+哪里不对或者不准确的，若能指出   
+感激不尽~~~  
+
+如果没能及时更新，可能比较忙，或者比较懒 →_→    
+可以 `Email` 或 翻译后，`pull request`
+
+---
+
+#Swift 编码规范  
 
 本文尝试做到以下几点 （大概的先后顺序）：
 
@@ -18,6 +31,48 @@ Swift 编码规范
  * 用足够的空行把代码分割成合理的块
  * 不要在一行结尾留下空白
    * 千万别在空行留下缩进
+
+#### 能用 `let` 尽量用 `let` 而不是 `var`
+
+尽可能的用 `let foo = ...` 而不是 `var foo = ...` （并且包括你疑惑的时候）。万不得已的时候，再用 `var` （就是说：你 *知道* 这个值会改变，比如：有 `weak` 修饰的存储变量）。
+
+_理由：_ 这俩关键字 无论意图还是意义 都很清楚了，但是 *let* 可以产生安全清晰的代码。
+
+
+`let`-有保障 并且它的值的永远不会变对程序猿也是个 *清晰的标记*，对于它的用法，之后的代码可以做个强而有力的推断。
+
+猜测代码更容易了。不然一旦你用了 `var`，还要去推测值会不会变，这时候你就不得不人肉去检查。
+
+这样，无论何时你看到 `var`，就假设它会变，并问自己为啥。
+
+#### 避免强行展开 可选类型
+
+如果你有个 `FooType?` 或 `FooType!` 的 `foo`，尽量不要强行展开它以得到基本类型（`foo!`）。
+
+这是不推荐的：
+
+```swift
+if let foo = foo {
+    // Use unwrapped `foo` value in here
+} else {
+    // If appropriate, handle the case where the optional is nil
+}
+```
+二选一，你应该在这些案例中用 Swift 的 可选类型链，比如：
+
+```swift
+// Call the function if `foo` is not nil. If `foo` is nil, ignore we ever tried to make the call
+foo?.callSomethingIfFooIsNotNil()
+```
+
+_理由：_ `if let` 绑定可选类型产生了更安全的代码，强行展开很可能导致运行时崩溃。
+
+#### 避免毫无保留地展开可选类型
+
+
+如果 foo 可能为 nil ，尽可能的用 `let foo: FooType?` 代替 `let foo: FooType!`（注意：一般情况下，`?`可以代替`!`）
+
+_理由:_ 明确的可选类型产生了更安全的代码。无保留地展开可选类型也会挂。
 
 #### 对于只读属性的 `properties` 和 `subscripts`，选用隐式的 getters 方法
 
@@ -207,10 +262,19 @@ struct Composite<T> {
 
 _理由:_ 省略多余的类型参数让意图更清晰，并且通过对比，让返回值为不同的类型参数的情况也清楚了很多。
 
----
+#### 操作定义符 两边留空格
 
-PS:   
-如果看不懂，一定是我翻译的不好 233333  
-[原版](https://github.com/github/swift-style-guide) 戳这里  
-哪里不对或者不准确的，若能指出   
-感激不尽~~~  
+当定义操作定义符 时，两边留空格。不要酱紫：
+
+```swift
+func <|(lhs: Int, rhs: Int) -> Int
+func <|<<A>(lhs: A, rhs: A) -> A
+```
+
+酱紫写：
+
+```swift
+func <| (lhs: Int, rhs: Int) -> Int
+func <|< <A>(lhs: A, rhs: A) -> A
+```
+_理由：_ 操作符 由 标点字符组成，当立即连着 类型或者参数值，会让代码非常难读。加上空格分开他们就清晰了
