@@ -49,7 +49,7 @@ _理由：_ 这俩关键字 无论意图还是意义 都很清楚了，但是 *l
 
 如果你有个 `FooType?` 或 `FooType!` 的 `foo`，尽量不要强行展开它以得到基本类型（`foo!`）。
 
-这是不推荐的：
+应该使用这种方式：
 
 ```swift
 if let foo = foo {
@@ -58,7 +58,7 @@ if let foo = foo {
     // If appropriate, handle the case where the optional is nil
 }
 ```
-二选一，你应该在这些案例中用 Swift 的 可选类型链，比如：
+或者使用可选链，比如：
 
 ```swift
 // Call the function if `foo` is not nil. If `foo` is nil, ignore we ever tried to make the call
