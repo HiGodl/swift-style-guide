@@ -45,6 +45,26 @@ _理由：_ 这俩关键字 无论意图还是意义 都很清楚了，但是 *l
 
 这样，无论何时你看到 `var`，就假设它会变，并问自己为啥。
 
+#### 尽早地 `Return` 或者 `break` 
+
+当你遇到某些操作需要通过条件判断去执行，应当尽早地退出判断条件：你不应该用下面这种写法
+```swift
+if n.isNumber {
+    // Use n here
+} else {
+    return
+}
+```
+而应该用这种写法代替:
+```swift
+guard n.isNumber else {
+    return
+}
+// Use n here
+```
+或者你也可以用 `if` 声明，但是我们推荐你使用 `guard`
+_理由：你一但声明 `guard` 编译器会强制要求你和 `return`, `break` 或者 `continue` 一起搭配使用，否则会产生一个编译时的错误。 
+
 #### 避免强行展开 可选类型
 
 如果你有个 `FooType?` 或 `FooType!` 的 `foo`，尽量不要强行展开它以得到基本类型（`foo!`）。
