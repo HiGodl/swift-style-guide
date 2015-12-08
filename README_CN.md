@@ -63,7 +63,8 @@ guard n.isNumber else {
 // Use n here
 ```
 或者你也可以用 `if` 声明，但是我们推荐你使用 `guard`
-_理由：你一但声明 `guard` 编译器会强制要求你和 `return`, `break` 或者 `continue` 一起搭配使用，否则会产生一个编译时的错误。 
+
+_理由：_ 你一但声明 `guard` 编译器会强制要求你和 `return`, `break` 或者 `continue` 一起搭配使用，否则会产生一个编译时的错误。 
 
 #### 避免强行展开 可选类型
 
