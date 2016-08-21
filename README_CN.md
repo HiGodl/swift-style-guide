@@ -241,9 +241,13 @@ it should be positioned with it.
 
 _理由:_ 类型区分号是对于 _identifier_ 来说的，所以要跟它连在一起。
 
-Also, when specifying the type of a dictionary, always put the colon immediately
-after the key type, followed by a space and then the value type.
+Also, when specifying the type of a dictionary, always put the colon immediately after the key type, followed by a space and then the value type.
 
+此外，指定字典类型时，键类型后紧跟着冒号，接着加一个空格，之后才是值类型。
+
+```swift
+let capitals: [Country: City] = [ Sweden: Stockholm ]
+```
 
 
 #### Only explicitly refer to `self` when required
@@ -363,9 +367,9 @@ Classes should start as `final`, and only be changed to allow subclassing if a v
 
 _Rationale:_ Composition is usually preferable to inheritance, and opting _in_ to inheritance hopefully means that more thought will be put into the decision.
 
-`Classes` 应该作为基类，只能被子类已识别正当的继承（and only be changed to allow subclassing if a valid need for inheritance has been identified.）。即使这种例子，根据同样的规则，类中的定义也要尽可能的用 `final` 标注上
+`Classes` 应该用`final`修饰，并且只有在继承的有效需求已被确定时候才能去使用子类。即便在这种情况（前面提到的使用继承的情况）下，根据同样的规则（`Classes` 应该用`final`修饰的规则），类中的定义（属性和方法等）也要尽可能的用 `final` 来修饰
 
-_理由:_ 组合通常比继承更合适，而且不用 继承意味着考虑的更多（and opting in to inheritance hopefully means that more thought will be put into the decision.）。
+_理由:_ 组合通常比继承更合适，选择使用继承则很可能意味着在做出决定时需要更多的思考。
 
 #### Omit type parameters where possible
 #### 能不写类型参数的就别写了
@@ -421,3 +425,5 @@ func <|< <A>(lhs: A, rhs: A) -> A
 _Rationale:_ Operators consist of punctuation characters, which can make them difficult to read when immediately followed by the punctuation for a type or value parameter list. Adding whitespace separates the two more clearly.
 
 _理由：_ 操作符 由 标点字符组成，当立即连着 类型或者参数值，会让代码非常难读。加上空格分开他们就清晰了
+
+
