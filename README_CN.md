@@ -1,19 +1,19 @@
-郑重声明：  
-如果看不懂，估计是我翻译的不好  
-233333  
+郑重声明：
+如果看不懂，估计是我翻译的不好
+233333
 
-##[原版](https://github.com/github/swift-style-guide) 戳这里  
+##[原版](https://github.com/github/swift-style-guide) 戳这里
 
-哪里不对或者不准确的，若能指出（我把原文贴上来了，用来对照 2015-12-13）  
-感激不尽~~~  
+哪里不对或者不准确的，若能指出（我把原文贴上来了，用来对照 2015-12-13）
+感激不尽~~~
 
-如果没能及时更新，可能比较忙，或者比较懒 →_→    
+如果没能及时更新，可能比较忙，或者比较懒 →_→
 可以 `Email` 或 翻译后，`pull request`
 
 
 ---
 
-#Swift 编码规范 
+#Swift 编码规范
 
 A guide to our Swift style and conventions.
 
@@ -80,9 +80,9 @@ Accordingly, whenever you see a `var` identifier being used, assume that it will
 这样，无论何时你看到 `var`，就假设它会变，并问自己为啥。
 
 #### Return and break early
-#### 尽早地 `Return` 或者 `break` 
+#### 尽早地 `Return` 或者 `break`
 
-When you have to meet certain criteria to continue execution, try to exit early. So, instead of this:  
+When you have to meet certain criteria to continue execution, try to exit early. So, instead of this:
 
 当你遇到某些操作需要通过条件判断去执行，应当尽早地退出判断条件：你不应该用下面这种写法
 
@@ -106,7 +106,7 @@ You can also do it with `if` statement, but using `guard` is prefered, because `
 
 或者你也可以用 `if` 声明，但是我们推荐你使用 `guard`
 
-_理由：_ 你一但声明 `guard` 编译器会强制要求你和 `return`, `break` 或者 `continue` 一起搭配使用，否则会产生一个编译时的错误。 
+_理由：_ 你一但声明 `guard` 编译器会强制要求你和 `return`, `break` 或者 `continue` 一起搭配使用，否则会产生一个编译时的错误。
 
 
 #### Avoid Using Force-Unwrapping of Optionals
