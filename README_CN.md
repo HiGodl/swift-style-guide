@@ -2,58 +2,51 @@
 如果看不懂，估计是我翻译的不好
 233333
 
-##[原版](https://github.com/github/swift-style-guide) 戳这里
+## [原版戳这里](https://github.com/github/swift-style-guide)
 
-哪里不对或者不准确的，若能指出（我把原文贴上来了，用来对照 2015-12-13）
+哪里不对或者不准确的，若能指出（我把原文贴上来了，点击左侧三角形就能展开用来对照 2015-12-13）
 感激不尽~~~
 
 如果没能及时更新，可能比较忙，或者比较懒 →_→
-可以 `Email` 或 翻译后，`pull request`
-
-
----
-
-#Swift 编码规范
-
-A guide to our Swift style and conventions.
-
-This is an attempt to encourage patterns that accomplish the following goals (in
-rough priority order):
-
- 1. Increased rigor, and decreased likelihood of programmer error
- 1. Increased clarity of intent
- 1. Reduced verbosity
- 1. Fewer debates about aesthetics
-
-If you have suggestions, please see our [contribution guidelines](CONTRIBUTING.md),
-then open a pull request. :zap:
-
-本文尝试做到以下几点 （大概的先后顺序）：
-
-1. 增进精确，减少程序员犯错的可能
-1. 明确意图
-1. 减少冗余
-1. 少量关于美的讨论
-
-如果你有什么建议，请看我们的 [贡献导引](CONTRIBUTING.md)，然后开个 `pull request`.  :zap:
+翻译后可以 email 或 `pull request`
 
 ----
 
-#### Whitespace
+<h1><details>
+<summary>Swift 编码规范</summary>
+A guide to our Swift style and conventions.
+</details></h1>
 
- * Tabs, not spaces.
- * End files with a newline.
- * Make liberal use of vertical whitespace to divide code into logical chunks.
- * Don’t leave trailing whitespace.
-   * Not even leading indentation on blank lines.
+<details><summary>本文尝试做到以下几点（大概的先后顺序）：</summary>
+This is an attempt to encourage patterns that accomplish the following goals (in
+rough priority order):
+</details>
 
-#### 留空白
+1. <details><summary>增进精确，减少程序员犯错的可能</summary>Increased rigor, and decreased likelihood of programmer error</details>
+1. <details><summary>明确意图</summary>Increased clarity of intent</details>
+1. <details><summary>减少冗余</summary>Reduced verbosity</details>
+1. <details><summary>减少关于美的争论</summary>Fewer debates about aesthetics</details>
 
- * 用 Tabs，而非 空格
- * 文件结束时留一空行
- * 用足够的空行把代码分割成合理的块
- * 不要在一行结尾留下空白
-   * 千万别在空行留下缩进
+<details>
+<summary>如果你有什么建议，请看我们的 <a href="./CONTRIBUTING.md">贡献导引</a>，然后开个 <code>pull request</code>. :zap:
+</summary>
+
+If you have suggestions, please see our [contribution guidelines](CONTRIBUTING.md),
+then open a pull request. :zap:
+</details>
+
+----
+
+<h4><details><summary>留空白</summary>Whitespace</details></h4>
+
+<ul>
+<li><details><summary>用 Tabs，而非 空格</summary>Tabs, not spaces.</details></li>
+<li><details><summary>文件结束时留一空行</summary>End files with a newline.</details></li>
+<li><details><summary>用足够的空行把代码分割成合理的块</summary>Make liberal use of vertical whitespace to divide code into logical chunks.</details></li>
+<li><details><summary>不要在一行结尾留下空白</summary>Don’t leave trailing whitespace.</details>
+	<ul><li><details><summary>千万别在空行留下缩进</summary>Not even leading indentation on blank lines.</details></li></ul>
+</li>
+</ul>
 
 #### Prefer `let`-bindings over `var`-bindings wherever possible
 #### 能用 `let` 尽量用 `let` 而不是 `var`
