@@ -135,7 +135,7 @@ because `guard` statement without `return`, `break` or `continue` produces a com
 
 <h4><details><summary>避免对 可选类型 强解包</summary>Avoid Using Force-Unwrapping of Optionals</details></h4>
 
-<details><summary>如果你有个 `FooType?` 或 `FooType!` 的 `foo`，尽量不要强行展开它以得到基本类型（`foo!`）。</summary>
+<details><summary>如果你有个 <code>FooType?</code> 或 <code>FooType!</code> 的 <code>foo</code>，尽量不要强行展开它以得到基本类型（<code>foo!</code>）。</summary>
 
 If you have an identifier `foo` of type `FooType?` or `FooType!`, don't force-unwrap it to get to the underlying value (`foo!`) if possible.
 </details>
@@ -160,31 +160,29 @@ Alternatively, you might want to use Swift's Optional Chaining in some of these 
 foo?.callSomethingIfFooIsNotNil()
 ```
 
-
-
-<details><summary>_理由：_ `if let` 绑定可选类型产生了更安全的代码，强行展开很可能导致运行时崩溃。</summary>
+<details><summary><i>理由：</i> <code>if let</code> 绑定可选类型产生了更安全的代码，强行展开很可能导致运行时崩溃。</summary>
 
 _Rationale:_ Explicit `if let`-binding of optionals results in safer code. Force unwrapping is more prone to lead to runtime crashes.
 </details>
 
 <h4><details><summary>避免毫无保留地展开可选类型</summary>Avoid Using Implicitly Unwrapped Optionals</details></h4>
 
-<details><summary>如果 foo 可能为 nil ，尽可能的用 `let foo: FooType?` 代替 `let foo: FooType!`（注意：一般情况下，`?`可以代替`!`）</summary>
+<details><summary>如果 foo 可能为 nil ，尽可能的用 <code>let foo: FooType?</code> 代替 <code>let foo: FooType!</code>（注意：一般情况下，<code>?</code>可以代替<code>!</code>）</summary>
 
 Where possible, use `let foo: FooType?` instead of `let foo: FooType!` if `foo` may be nil (Note that in general, `?` can be used instead of `!`).
 </details>
 
-<details><summary>_理由:_ 明确的可选类型产生了更安全的代码。无保留地展开可选类型也会挂。</summary>
+<details><summary><i>理由：</i> 明确的可选类型产生了更安全的代码。无保留地展开可选类型也会挂。</summary>
 
 _Rationale:_ Explicit optionals result in safer code. Implicitly unwrapped optionals have the potential of crashing at runtime.
 </details>
 
-<h4><details><summary>Prefer implicit getters on read-only properties and subscripts</summary>
+<h4><details><summary>对于只读属性和 <code>subscript</code>，选用隐式的 getters 方法</summary>
 
-对于只读属性的 `properties` 和 `subscripts`，选用隐式的 getters 方法
+Prefer implicit getters on read-only properties and subscripts
 </details></h4>
 
-<details><summary>如果可以，省略只读属性的 `properties` 和 `subscripts` 的 `get` 关键字</summary>
+<details><summary>如果可以，省略只读属性和 <code>subscript</code> 的 <code>get</code> 关键字</summary>
 
 When possible, omit the `get` keyword on read-only computed properties and
 read-only subscripts.</details>
@@ -217,7 +215,7 @@ subscript(index: Int) -> T {
 }
 ```
 
-<details><summary>_理由:_ 第一个版本的代码意图已经很清楚了，并且用了更少的代码</summary>
+<details><summary><i>理由：</i> 第一个版本的代码意图已经很清楚了，并且用了更少的代码</summary>
 
 _Rationale:_ The intent and meaning of the first version is clear, and results in less code.
 </details>
@@ -244,7 +242,7 @@ internal struct TheFez {
 }
 ```
 
-<details><summary>_理由:_ 顶级定义指定为 `internal`很少有恰当的，要明确的确保经过了仔细的判断。有了一个定义，重用同样的权限控制说明符就显得重复，所以默认的通常是合理的。</summary>
+<details><summary><i>理由：</i> 顶级定义指定为 <code>internal</code> 很少有恰当的，要明确的确保经过了仔细的判断。有了一个定义，重用同样的权限控制说明符就显得重复，所以默认的通常是合理的。</summary>
 
 _Rationale:_ It's rarely appropriate for top-level definitions to be specifically `internal`, and being explicit ensures that careful thought goes into that decision. Within a definition, reusing the same access control specifier is just duplicative, and the default is usually reasonable.
 </details>
@@ -270,7 +268,7 @@ func makeCoffee(type: CoffeeType) -> Coffee { ... }
 
 
 
-<details><summary>_理由:_ 类型区分号是对于 _identifier_ 来说的，所以要跟它连在一起。</summary>
+<details><summary><i>理由：</i> 类型区分号是对于标示符来说的，所以要跟它连在一起。</summary>
 
 _Rationale:_ The type specifier is saying something about the _identifier_ so
 it should be positioned with it.
@@ -285,7 +283,7 @@ Also, when specifying the type of a dictionary, always put the colon immediately
 let capitals: [Country: City] = [ Sweden: Stockholm ]
 ```
 
-<h4><details><summary>需要时才写上 `self`</summary>
+<h4><details><summary>需要时才写上 <code>self</code></summary>
 
 Only explicitly refer to `self` when required
 </details></h4>
@@ -293,7 +291,7 @@ Only explicitly refer to `self` when required
 
 
 
-<details><summary>当调用 `self` 的 `properties` 或 `methods` 时，`self` 用默认的隐式引用：</summary>
+<details><summary>当调用 <code>self</code> 的属性或方法时，<code>self</code> 用默认的隐式引用：</summary>
 
 When accessing properties or methods on `self`, leave the reference to `self` implicit by default:
 </details>
@@ -308,7 +306,7 @@ private class History {
 }
 ```
 
-<details><summary>必要的时候再加上`self`, 比如在闭包里，或者 参数名冲突了：</summary>
+<details><summary>必要的时候再加上 <code>self</code>, 比如在（逃逸）闭包里，或者 参数名冲突了：</summary>
 
 Only include the explicit keyword when required by the language—for example, in a closure, or when parameter names conflict:
 </details>
@@ -327,22 +325,22 @@ extension History {
 }
 ```
 
-<details><summary>_原因:_ 在闭包里用`self`更加凸显它的语义，并且避免了别处的冗长</summary>
+<details><summary><i>原因:</i> 在闭包里用 <code>self</code> 更加凸显它的语义，并且避免了别处的冗长</summary>
 
 _Rationale:_ This makes the capturing semantics of `self` stand out more in closures, and avoids verbosity elsewhere.
 </details>
 
-<h4><details><summary>首选 `structs` 而非 `classes`</summary>
+<h4><details><summary>首选 <code>struct</code> 而非 <code>class</code></summary>
 
 Prefer structs over classes
 </details></h4>
 
-<details><summary>除非你需要 `class` 才能提供的功能（比如 `identity` 或 `deinitializers`），不然就用 `struct`</summary>
+<details><summary>除非你需要 <code>class</code> 才能提供的功能（比如 identity 或 <code>deinit</code>ializers），不然就用 <code>struct</code></summary>
 
 Unless you require functionality that can only be provided by a class (like identity or deinitializers), implement a struct instead.
 </details>
 
-<details><summary>要注意到继承通常**不**是用 类 的好理由，因为 多态 可以通过 协议 实现，重用 可以通过 组合 实现。</summary>
+<details><summary>要注意到继承通常 <strong>不</strong> 是用 类 的好理由，因为 多态 可以通过 协议 实现，重用 可以通过 组合 实现。</summary>
 
 Note that inheritance is (by itself) usually _not_ a good reason to use classes, because polymorphism can be provided by protocols, and implementation reuse can be provided through composition.
 </details>
@@ -401,23 +399,23 @@ struct Car: Vehicle {
 }
 ```
 
-<details><summary>_理由:_ 值的类型更简单，容易辨别，并且通过`let`关键字可猜测行为。</summary>
+<details><summary><i>理由：</i> 值的类型更简单，容易辨别，并且通过 <code>let</code> 关键字可猜测行为。</summary>
 
 _Rationale:_ Value types are simpler, easier to reason about, and behave as expected with the `let` keyword.
 </details>
 
-<h4><details><summary>默认 `classes` 为 `final`</summary>
+<h4><details><summary>默认 <code>class</code> 为 <code>final</code></summary>
 
 Make classes `final` by default
 </details></h4>
 
-<details><summary>`Classes` 应该用`final`修饰，并且只有在继承的有效需求已被确定时候才能去使用子类。即便在这种情况（前面提到的使用继承的情况）下，根据同样的规则（`Classes` 应该用`final`修饰的规则），类中的定义（属性和方法等）也要尽可能的用 `final` 来修饰
+<details><summary><code>class</code> 应该用 <code>final</code> 修饰，并且只有在继承的有效需求已被确定时候才能去使用子类。即便在这种情况（前面提到的使用继承的情况）下，根据同样的规则（<code>class</code> 应该用 final</code> 修饰的规则），类中的定义（属性和方法等）也要尽可能的用 <code>final</code> 来修饰
 </summary>
 
 Classes should start as `final`, and only be changed to allow subclassing if a valid need for inheritance has been identified. Even in that case, as many definitions as possible _within_ the class should be `final` as well, following the same rules.
 </details>
 
-<details><summary>_理由:_ 组合通常比继承更合适，选择使用继承则很可能意味着在做出决定时需要更多的思考。</summary>
+<details><summary><i>理由：</i> 组合通常比继承更合适，选择使用继承则很可能意味着在做出决定时需要更多的思考。</summary>
 
 _Rationale:_ Composition is usually preferable to inheritance, and opting _in_ to inheritance hopefully means that more thought will be put into the decision.
 </details>
@@ -452,17 +450,17 @@ struct Composite<T> {
 }
 ```
 
-<details><summary>_理由:_ 省略多余的类型参数让意图更清晰，并且通过对比，让返回值为不同的类型参数的情况也清楚了很多。</summary>
+<details><summary><i>理由：</i> 省略多余的类型参数让意图更清晰，并且通过对比，让返回值为不同的类型参数的情况也清楚了很多。</summary>
 
 _Rationale:_ Omitting redundant type parameters clarifies the intent, and makes it obvious by contrast when the returned type takes different type parameters.
 </details>
 
-<h4><details><summary>操作定义符 两边留空格</summary>
+<h4><details><summary>定义操作符 两边留空格</summary>
 
 Use whitespace around operator definitions
 </details></h4>
 
-<details><summary>当定义操作定义符 时，两边留空格。不要酱紫：</summary>
+<details><summary>当定义操作符 时，两边留空格。不要酱紫：</summary>
 
 Use whitespace around operators when defining them. Instead of:
 </details>
@@ -479,7 +477,7 @@ func <| (lhs: Int, rhs: Int) -> Int
 func <|< <A>(lhs: A, rhs: A) -> A
 ```
 
-<details><summary>_理由：_ 操作符 由 标点字符组成，当立即连着 类型或者参数值，会让代码非常难读。加上空格分开他们就清晰了</summary>
+<details><summary><i>理由：</i> 操作符 由 标点字符组成，当立即连着 类型或者参数值，会让代码非常难读。加上空格分开他们就清晰了</summary>
 
 _Rationale:_ Operators consist of punctuation characters, which can make them difficult to read when immediately followed by the punctuation for a type or value parameter list. Adding whitespace separates the two more clearly.
 </details>
