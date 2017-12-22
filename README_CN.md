@@ -48,29 +48,50 @@ then open a pull request. :zap:
 </li>
 </ul>
 
-#### Prefer `let`-bindings over `var`-bindings wherever possible
-#### 能用 `let` 尽量用 `let` 而不是 `var`
+<h4><details>
+<summary>能用 <code>let</code> 尽量用 <code>let</code> 而不是 <code>var</code></summary>
+
+Prefer `let`-bindings over `var`-bindings wherever possible
+</details></h4>
+
+<details>
+<summary>
+尽可能的用 <code>let foo = ...</code> 而不是 <code>var foo = ...</code> （并且包括你疑惑的时候）。万不得已的时候，再用 <code>var</code> （就是说：你 <i>知道</i> 这个值会改变，比如：有 <code>weak</code> 修饰的存储变量）。
+</summary>
 
 Use `let foo = …` over `var foo = …` wherever possible (and when in doubt). Only use `var` if you absolutely have to (i.e. you *know* that the value might change, e.g. when using the `weak` storage modifier).
+</details>
+
+<details>
+<summary>
+<i>理由：</i> 这俩关键字 无论意图还是意义 都很清楚了，但是 <code>let</code> 可以产生安全清晰的代码。
+</summary>
 
 _Rationale:_ The intent and meaning of both keywords is clear, but *let-by-default* results in safer and clearer code.
+</details>
 
-尽可能的用 `let foo = ...` 而不是 `var foo = ...` （并且包括你疑惑的时候）。万不得已的时候，再用 `var` （就是说：你 *知道* 这个值会改变，比如：有 `weak` 修饰的存储变量）。
-
-_理由：_ 这俩关键字 无论意图还是意义 都很清楚了，但是 *let* 可以产生安全清晰的代码。
+<details>
+<summary>
+<code>let</code>-有保障 并且它的值的永远不会变对程序猿也是个 <i>清晰的标记</i>，对于它的用法，之后的代码可以做个强而有力的推断。</summary>
 
 A `let`-binding guarantees and *clearly signals to the programmer* that its value will never change. Subsequent code can thus make stronger assumptions about its usage.
+</details>
+
+<details>
+<summary>
+猜测代码更容易了。不然一旦你用了 <code>var</code>，还要去推测值会不会变，这时候你就不得不人肉去检查。
+</summary>
 
 It becomes easier to reason about code. Had you used `var` while still making the assumption that the value never changed, you would have to manually check that.
+</details>
+
+<details>
+<summary>
+这样，无论何时你看到 <code>var</code>，就假设它会变，并问自己为啥。
+</summary>
 
 Accordingly, whenever you see a `var` identifier being used, assume that it will change and ask yourself why.
-
-
-`let`-有保障 并且它的值的永远不会变对程序猿也是个 *清晰的标记*，对于它的用法，之后的代码可以做个强而有力的推断。
-
-猜测代码更容易了。不然一旦你用了 `var`，还要去推测值会不会变，这时候你就不得不人肉去检查。
-
-这样，无论何时你看到 `var`，就假设它会变，并问自己为啥。
+</details>
 
 #### Return and break early
 #### 尽早地 `Return` 或者 `break`
