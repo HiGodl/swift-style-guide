@@ -2,8 +2,6 @@
 如果看不懂，估计是我翻译的不好
 233333
 
-## [原版戳这里](https://github.com/github/swift-style-guide)
-
 哪里不对或者不准确的，（我把原文贴上来了，点击左侧三角形就能展开用来对照 2015-12-13）
 若能指出，感激不尽~~~
 
@@ -37,7 +35,7 @@ then open a pull request. :zap:
 
 ----
 
-<h2><details><summary>留空白</summary>Whitespace</details></h2>
+<h3><details><summary>留空白</summary>Whitespace</details></h3>
 
 <ul>
 <li><details><summary>用 tab，而非 空格</summary>Tabs, not spaces.</details></li>
@@ -48,11 +46,11 @@ then open a pull request. :zap:
 </li>
 </ul>
 
-<h2><details>
+<h3><details>
 <summary>能用 <code>let</code> 尽量用 <code>let</code> 而不是 <code>var</code></summary>
 
 Prefer `let`-bindings over `var`-bindings wherever possible
-</details></h2>
+</details></h3>
 
 <details>
 <summary>
@@ -67,7 +65,7 @@ Use `let foo = …` over `var foo = …` wherever possible (and when in doubt). 
 <i>理由：</i> 这俩关键字 无论意图还是意义 都很清楚了，但是 <code>let</code> 可以产生安全清晰的代码。
 </summary>
 
-_Rationale:_ The intent and meaning of both keywords is clear, but *let-by-default* results in safer and clearer code.
+_Rationale:_ The intent and meaning of both keywords are clear, but *let-by-default* results in safer and clearer code.
 </details>
 
 <br />
@@ -95,10 +93,10 @@ It becomes easier to reason about code. Had you used `var` while still making th
 Accordingly, whenever you see a `var` identifier being used, assume that it will change and ask yourself why.
 </details>
 
-<h2><details><summary>
+<h3><details><summary>
 尽早地 <code>return</code> 或者 <code>break</code></summary>
 
-Return and break early</details></h2>
+Return and break early</details></h3>
 
 <details>
 <summary>当你遇到某些操作需要通过条件判断去执行，应当尽早地退出判断条件：你不应该用下面这种写法</summary>
@@ -135,7 +133,7 @@ You can also do it with `if` statement, but using `guard` is prefered
 because `guard` statement without `return`, `break` or `continue` produces a compile-time error, so exit is guaranteed.
 </details>
 
-<h2><details><summary>避免对 可选类型 强解包</summary>Avoid Using Force-Unwrapping of Optionals</details></h2>
+<h3><details><summary>避免对 可选类型 强解包</summary>Avoid Using Force-Unwrapping of Optionals</details></h3>
 
 <details><summary>如果你有个 <code>FooType?</code> 或 <code>FooType!</code> 的 <code>foo</code>，尽量不要强行展开它（<code>foo!</code>）以得到它的关联值。</summary>
 
@@ -167,7 +165,7 @@ foo?.callSomethingIfFooIsNotNil()
 _Rationale:_ Explicit `if let`-binding of optionals results in safer code. Force unwrapping is more prone to lead to runtime crashes.
 </details>
 
-<h2><details><summary>避免隐式解析的可选类型</summary>Avoid Using Implicitly Unwrapped Optionals</details></h2>
+<h3><details><summary>避免隐式解析的可选类型</summary>Avoid Using Implicitly Unwrapped Optionals</details></h3>
 
 <details><summary>如果 foo 可能为 <code>nil</code> ，尽可能的用 <code>let foo: FooType?</code> 代替 <code>let foo: FooType!</code>（注意：一般情况下，<code>?</code> 可以代替 <code>!</code>）</summary>
 
@@ -179,10 +177,10 @@ Where possible, use `let foo: FooType?` instead of `let foo: FooType!` if `foo` 
 _Rationale:_ Explicit optionals result in safer code. Implicitly unwrapped optionals have the potential of crashing at runtime.
 </details>
 
-<h2><details><summary>对于只读属性和 <code>subscript</code>，选用隐式的 getters 方法</summary>
+<h3><details><summary>对于只读属性和 <code>subscript</code>，选用隐式的 getters 方法</summary>
 
 Prefer implicit getters on read-only properties and subscripts
-</details></h2>
+</details></h3>
 
 <details><summary>如果可以，省略只读属性和 <code>subscript</code> 的 <code>get</code> 关键字</summary>
 
@@ -219,10 +217,10 @@ subscript(index: Int) -> T {
 
 <details><summary><i>理由：</i> 第一个版本的代码意图已经很清楚了，并且用了更少的代码</summary>
 
-_Rationale:_ The intent and meaning of the first version is clear, and results in less code.
+_Rationale:_ The intent and meaning of the first version are clear, and results in less code.
 </details>
 
-<h2><details><summary>对于顶级定义，永远明确的列出权限控制</summary>Always specify access control explicitly for top-level definitions</details></h2>
+<h3><details><summary>对于顶级定义，永远明确的列出权限控制</summary>Always specify access control explicitly for top-level definitions</details></h3>
 
 <details><summary>顶级函数，类型和变量，永远应该有着详尽的权限控制说明符</summary>
 
@@ -249,10 +247,10 @@ internal struct TheFez {
 _Rationale:_ It's rarely appropriate for top-level definitions to be specifically `internal`, and being explicit ensures that careful thought goes into that decision. Within a definition, reusing the same access control specifier is just duplicative, and the default is usually reasonable.
 </details>
 
-<h2><details><summary>当指定一个类型时，把 冒号和标识符 连在一起</summary>
+<h3><details><summary>当指定一个类型时，把 冒号和标识符 连在一起</summary>
 
 When specifying a type, always associate the colon with the identifier
-</details></h2>
+</details></h3>
 
 <details><summary>当指定标示符的类型时，冒号要紧跟着标示符，然后空一格再写类型</summary>
 
@@ -282,13 +280,13 @@ Also, when specifying the type of a dictionary, always put the colon immediately
 </details>
 
 ```swift
-let capitals: [Country: City] = [Sweden: Stockholm]
+let capitals: [Country: City] = [sweden: stockholm]
 ```
 
-<h2><details><summary>需要时才写上 <code>self</code></summary>
+<h3><details><summary>需要时才写上 <code>self</code></summary>
 
 Only explicitly refer to `self` when required
-</details></h2>
+</details></h3>
 
 <details><summary>当调用 <code>self</code> 的属性或方法时，默认隐式引用<code>self</code>：</summary>
 
@@ -329,10 +327,10 @@ extension History {
 _Rationale:_ This makes the capturing semantics of `self` stand out more in closures, and avoids verbosity elsewhere.
 </details>
 
-<h2><details><summary>首选 <code>struct</code> 而非 <code>class</code></summary>
+<h3><details><summary>首选 <code>struct</code> 而非 <code>class</code></summary>
 
 Prefer structs over classes
-</details></h2>
+</details></h3>
 
 <details><summary>除非你需要 <code>class</code> 才能提供的功能（比如 identity 或 <code>deinit</code>ializers），不然就用 <code>struct</code></summary>
 
@@ -403,10 +401,10 @@ struct Car: Vehicle {
 _Rationale:_ Value types are simpler, easier to reason about, and behave as expected with the `let` keyword.
 </details>
 
-<h2><details><summary>默认 <code>class</code> 为 <code>final</code></summary>
+<h3><details><summary>默认 <code>class</code> 为 <code>final</code></summary>
 
 Make classes `final` by default
-</details></h2>
+</details></h3>
 
 <details><summary><code>class</code> 应该用 <code>final</code> 修饰，并且只有在继承的有效需求已被确定时候才能去使用子类。即便在这种情况（前面提到的使用继承的情况）下，根据同样的规则（<code>class</code> 应该用 <code>final</code> 修饰的规则），类中的定义（属性和方法等）也要尽可能的用 <code>final</code> 来修饰
 </summary>
@@ -419,10 +417,10 @@ Classes should start as `final`, and only be changed to allow subclassing if a v
 _Rationale:_ Composition is usually preferable to inheritance, and opting _in_ to inheritance hopefully means that more thought will be put into the decision.
 </details>
 
-<h2><details><summary>能不写类型参数的就别写了</summary>
+<h3><details><summary>能不写类型参数的就别写了</summary>
 
 Omit type parameters where possible
-</details></h2>
+</details></h3>
 
 <details><summary>当对接收者来说一样时，参数化类型的方法可以省略接收者的类型参数。比如：</summary>
 
@@ -454,10 +452,10 @@ struct Composite<T> {
 _Rationale:_ Omitting redundant type parameters clarifies the intent, and makes it obvious by contrast when the returned type takes different type parameters.
 </details>
 
-<h2><details><summary>定义操作符 两边留空格</summary>
+<h3><details><summary>定义操作符 两边留空格</summary>
 
 Use whitespace around operator definitions
-</details></h2>
+</details></h3>
 
 <details><summary>当定义操作符时，两边留空格。不要酱紫：</summary>
 
@@ -480,3 +478,12 @@ func <|< <A>(lhs: A, rhs: A) -> A
 
 _Rationale:_ Operators consist of punctuation characters, which can make them difficult to read when immediately followed by the punctuation for a type or value parameter list. Adding whitespace separates the two more clearly.
 </details>
+
+### 其他语言
+
+* [English Version](https://github.com/github/swift-style-guide)
+* [日本語版](https://github.com/jarinosuke/swift-style-guide/blob/master/README_JP.md)
+* [한국어판](https://github.com/minsOne/swift-style-guide/blob/master/README_KR.md)
+* [Versión en Español](https://github.com/antoniosejas/swift-style-guide/blob/spanish/README-ES.md)
+* [Versão em Português do Brasil](https://github.com/fernandocastor/swift-style-guide/blob/master/README-PTBR.md)
+* [فارسی](https://github.com/mohpor/swift-style-guide/blob/Persian/README-FA.md)
