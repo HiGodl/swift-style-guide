@@ -114,7 +114,7 @@ if n.isNumber {
 }
 ```
 
-use this:
+<details><summary>用这个：</summary>use this:</details>
 
 ```swift
 guard n.isNumber else {
@@ -142,7 +142,7 @@ because `guard` statement without `return`, `break` or `continue` produces a com
 If you have an identifier `foo` of type `FooType?` or `FooType!`, don't force-unwrap it to get to the underlying value (`foo!`) if possible.
 </details>
 
-Instead, prefer this:
+<details><summary>取而代之的，推荐这样：</summary>Instead, prefer this:</details>
 
 ```swift
 if let foo = foo {
@@ -189,7 +189,7 @@ Prefer implicit getters on read-only properties and subscripts
 When possible, omit the `get` keyword on read-only computed properties and
 read-only subscripts.</details>
 
-So, write these:
+<details><summary>所以应该这样写：</summary>So, write these:</details>
 
 ```swift
 var myGreatProperty: Int {
@@ -201,7 +201,7 @@ subscript(index: Int) -> T {
 }
 ```
 
-… not these:
+<details><summary>……而不是：</summary>… not these:</details>
 
 ```swift
 var myGreatProperty: Int {
@@ -268,8 +268,6 @@ let timeToCoffee: NSTimeInterval = 2
 func makeCoffee(type: CoffeeType) -> Coffee { ... }
 ```
 
-
-
 <details><summary><i>理由：</i> 类型区分号是对于标示符来说的，所以要跟它连在一起。</summary>
 
 _Rationale:_ The type specifier is saying something about the _identifier_ so
@@ -291,9 +289,6 @@ let capitals: [Country: City] = [Sweden: Stockholm]
 
 Only explicitly refer to `self` when required
 </details></h2>
-
-
-
 
 <details><summary>当调用 <code>self</code> 的属性或方法时，默认隐式引用<code>self</code>：</summary>
 
@@ -443,7 +438,7 @@ struct Composite<T> {
 }
 ```
 
-could be rendered as:
+<details><summary>可以改成这样：</summary>could be rendered as:</details>
 
 ```swift
 struct Composite<T> {
@@ -464,7 +459,7 @@ _Rationale:_ Omitting redundant type parameters clarifies the intent, and makes 
 Use whitespace around operator definitions
 </details></h2>
 
-<details><summary>当定义操作符 时，两边留空格。不要酱紫：</summary>
+<details><summary>当定义操作符时，两边留空格。不要酱紫：</summary>
 
 Use whitespace around operators when defining them. Instead of:
 </details>
@@ -474,14 +469,14 @@ func <|(lhs: Int, rhs: Int) -> Int
 func <|<<A>(lhs: A, rhs: A) -> A
 ```
 
-write:
+<details><summary>应该写：</summary>write:</details>
 
 ```swift
 func <| (lhs: Int, rhs: Int) -> Int
 func <|< <A>(lhs: A, rhs: A) -> A
 ```
 
-<details><summary><i>理由：</i> 操作符 由 标点字符组成，当立即连着 类型或者参数值，会让代码非常难读。加上空格分开他们就清晰了</summary>
+<details><summary><i>理由：</i> 操作符 由标点字符组成，当立即连着类型或者参数值，会让代码非常难读。加上空格分开他们就清晰了</summary>
 
 _Rationale:_ Operators consist of punctuation characters, which can make them difficult to read when immediately followed by the punctuation for a type or value parameter list. Adding whitespace separates the two more clearly.
 </details>
