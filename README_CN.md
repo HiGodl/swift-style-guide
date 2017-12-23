@@ -40,7 +40,7 @@ then open a pull request. :zap:
 <h2><details><summary>留空白</summary>Whitespace</details></h2>
 
 <ul>
-<li><details><summary>用 tab，而非 空格</summary>Tabs, not spaces.</details></li>
+<li><details><summary>用 tab，而非 空格</summary>Tabs, not spaces.</details></li>
 <li><details><summary>文件结束时留一空行</summary>End files with a newline.</details></li>
 <li><details><summary>用足够的空行把代码分割成合理的块</summary>Make liberal use of vertical whitespace to divide code into logical chunks.</details></li>
 <li><details><summary>不要在一行结尾留下空白</summary>Don’t leave trailing whitespace.</details>
@@ -137,12 +137,12 @@ because `guard` statement without `return`, `break` or `continue` produces a com
 
 <h2><details><summary>避免对 可选类型 强解包</summary>Avoid Using Force-Unwrapping of Optionals</details></h2>
 
-<details><summary>如果你有个 <code>FooType?</code> 或 <code>FooType!</code> 的 <code>foo</code>，尽量不要强行展开它（<code>foo!</code>）以得到它的关联值。</summary>
+<details><summary>如果你有个 <code>FooType?</code> 或 <code>FooType!</code> 的 <code>foo</code>，尽量不要强行展开它（<code>foo!</code>）以得到它的关联值。</summary>
 
 If you have an identifier `foo` of type `FooType?` or `FooType!`, don't force-unwrap it to get to the underlying value (`foo!`) if possible.
 </details>
 
-<details><summary>取而代之的，推荐这样：</summary>Instead, prefer this:</details>
+<details><summary>取而代之的，推荐这样：</summary>Instead, prefer this:</details>
 
 ```swift
 if let foo = foo {
@@ -235,7 +235,7 @@ internal struct TheFez {}
 private func doTheThings(things: [Thing]) {}
 ```
 
-<details><summary>然而在这些函数/类型的内部，可以在合适的地方使用隐式权限控制：</summary>However, definitions within those can leave access control implicit, where appropriate:
+<details><summary>然而在这些函数/类型的内部，可以在合适的地方使用隐式权限控制：</summary>However, definitions within those can leave access control implicit, where appropriate:
 </details>
 
 ```swift
