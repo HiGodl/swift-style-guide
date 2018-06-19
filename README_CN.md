@@ -15,7 +15,7 @@
 A guide to our Swift style and conventions.
 </details></h1>
 
-<details><summary>按大概的先后顺序，本文尝试做到以下几点：</summary>
+<details><summary>按大概的先后顺序，本文尝试阐述下几点：</summary>
 This is an attempt to encourage patterns that accomplish the following goals (in
 rough priority order):
 </details>
@@ -23,7 +23,7 @@ rough priority order):
 1. <details><summary>增强严谨性，减少程序员犯错的可能</summary>Increased rigor, and decreased likelihood of programmer error</details>
 1. <details><summary>明确意图</summary>Increased clarity of intent</details>
 1. <details><summary>减少冗余</summary>Reduced verbosity</details>
-1. <details><summary>减少关于美的争论</summary>Fewer debates about aesthetics</details>
+1. <details><summary>减少关于代码美观性的争论</summary>Fewer debates about aesthetics</details>
 
 <details>
 <summary>如果你有什么建议，请参考我们的 <a href="./CONTRIBUTING.md">贡献导引</a>，然后开个 <code>pull request</code>. :zap:
@@ -35,26 +35,26 @@ then open a pull request. :zap:
 
 ----
 
-<h3><details><summary>留空白</summary>Whitespace</details></h3>
+<h3><details><summary>留空</summary>Whitespace</details></h3>
 
 <ul>
-<li><details><summary>使用 tab，而不是空格</summary>Tabs, not spaces.</details></li>
-<li><details><summary>文件末尾留一个空行</summary>End files with a newline.</details></li>
-<li><details><summary>用足够的空行把代码分割成合理的块</summary>Make liberal use of vertical whitespace to divide code into logical chunks.</details></li>
-<li><details><summary>行尾不要留空白字符</summary>Don’t leave trailing whitespace.</details>
+<li><details><summary>代码缩进用Tab代替空格</summary>Tabs, not spaces.</details></li>
+<li><details><summary>文件末尾留一空行</summary>End files with a newline.</details></li>
+<li><details><summary>用空行把代码分割成合理的块</summary>Make liberal use of vertical whitespace to divide code into logical chunks.</details></li>
+<li><details><summary>行尾不要留任何空白字符</summary>Don’t leave trailing whitespace.</details>
 <li><details><summary>空行不要有缩进</summary>Not even leading indentation on blank lines.</details></li>
 </li>
 </ul>
 
 <h3><details>
-<summary>能用 <code>let</code> 尽量用 <code>let</code> 而不是 <code>var</code></summary>
+<summary>尽量用 <code>let</code> 代替 <code>var</code></summary>
 
 Prefer `let`-bindings over `var`-bindings wherever possible
 </details></h3>
 
 <details>
 <summary>
-尽可能的用 <code>let foo = ...</code> 而不是 <code>var foo = ...</code> （包括不确定的时候）。到万不得已的时候，再用 <code>var</code> （也就是说：你 <i>知道</i> 这个值会改变，比如：有 <code>weak</code> 修饰的存储变量）。
+尽量用 <code>let foo = ...</code> 代替 <code>var foo = ...</code> （包括不确定的时候）。到万不得已的时候，再用 <code>var</code> （也就是说：你 <i>知道</i> 这个值会改变，比如：有 <code>weak</code> 修饰的存储变量）。
 </summary>
 
 Use `let foo = …` over `var foo = …` wherever possible (and when in doubt). Only use `var` if you absolutely have to (i.e. you *know* that the value might change, e.g. when using the `weak` storage modifier).
@@ -62,7 +62,7 @@ Use `let foo = …` over `var foo = …` wherever possible (and when in doubt). 
 
 <details>
 <summary>
-<i>理由：</i> 这两个关键字 无论意图还是意义 都很清楚了，但是 <code>let</code> 可以使代码更安全更清晰。
+<i>理由：</i> 这两个关键字无论意图还是意义都很明确，但是 <code>let</code> 可以使代码更安全更清晰。
 </summary>
 
 _Rationale:_ The intent and meaning of both keywords are clear, but *let-by-default* results in safer and clearer code.
@@ -72,14 +72,14 @@ _Rationale:_ The intent and meaning of both keywords are clear, but *let-by-defa
 
 <details>
 <summary>
-<code>let</code> 保证它的值的永远不会变，对程序猿来说也是个 <i>清晰的标记</i>。因此之后的代码可以根据它的使用做出强有力的推断。</summary>
+<code>let</code> 保证它的值的永远不会变，对程序猿来说也是个 <i>清晰的标记</i>。因此之后的代码可以根据它的使用做出明确的推断。</summary>
 
 A `let`-binding guarantees and *clearly signals to the programmer* that its value will never change. Subsequent code can thus make stronger assumptions about its usage.
 </details>
 
 <details>
 <summary>
-理解代码也更容易了。不然一旦你用了 <code>var</code>，还要去推测值会不会变，这时你就不得不手动去检查。
+代码理解上也更容易。一旦使用了<code>var</code>，在之后用到时需要推测这个值会不会变，并且需要手动进行检查。
 </summary>
 
 It becomes easier to reason about code. Had you used `var` while still making the assumption that the value never changed, you would have to manually check that.
@@ -87,7 +87,7 @@ It becomes easier to reason about code. Had you used `var` while still making th
 
 <details>
 <summary>
-相应地，无论何时你看到 <code>var</code>，就假设它会变，并问自己为啥它会变。
+相应地，任何时候看到 <code>var</code>，就假设它会变，并问自己为什么它会变。
 </summary>
 
 Accordingly, whenever you see a `var` identifier being used, assume that it will change and ask yourself why.
@@ -99,7 +99,7 @@ Accordingly, whenever you see a `var` identifier being used, assume that it will
 Return and break early</details></h3>
 
 <details>
-<summary>当你遇到某些操作需要通过条件判断去执行时，应当尽早地退出判断条件：应当避免下面这种写法</summary>
+<summary>当你某些操作需要通过条件判断去执行时，应当尽早地退出判断条件：避免下面这种写法</summary>
 
 When you have to meet certain criteria to continue execution, try to exit early. So, instead of this:
 </details>
@@ -112,7 +112,7 @@ if n.isNumber {
 }
 ```
 
-<details><summary>要用这种：</summary>use this:</details>
+<details><summary>用这种写法代替：</summary>use this:</details>
 
 ```swift
 guard n.isNumber else {
@@ -122,25 +122,25 @@ guard n.isNumber else {
 ```
 
 <details>
-<summary>你也可以用 <code>if</code> 声明，但是我们推荐你使用 <code>guard</code></summary>
+<summary>当然可以使用 <code>if</code> 声明，但是更推荐用 <code>guard</code></summary>
 
 You can also do it with `if` statement, but using `guard` is prefered
 </details>
 
 <details>
-<summary><i>理由：</i> 你一但声明 <code>guard</code> 编译器会强制要求你和 <code>return</code>, <code>break</code> 或者 <code>continue</code> 一起搭配使用，否则会产生一个编译时的错误。</summary>
+<summary><i>理由：</i> 你一但声明 <code>guard</code> 编译器会强制要求和 <code>return</code>, <code>break</code> 或者 <code>continue</code> 一起搭配使用，否则会产生编译时的错误。</summary>
 
 because `guard` statement without `return`, `break` or `continue` produces a compile-time error, so exit is guaranteed.
 </details>
 
-<h3><details><summary>避免对 可选类型 强解包</summary>Avoid Using Force-Unwrapping of Optionals</details></h3>
+<h3><details><summary>避免对可选类型强解包</summary>Avoid Using Force-Unwrapping of Optionals</details></h3>
 
-<details><summary>如果你有一个 <code>FooType?</code> 类型或 <code>FooType!</code> 类型的 <code>foo</code>，尽量不要强行解包它（<code>foo!</code>）以得到它的关联值。</summary>
+<details><summary>如果有一个 <code>FooType?</code> 类型或 <code>FooType!</code> 类型的 <code>foo</code>，尽量不要强行解包（<code>foo!</code>）以得到关联值。</summary>
 
 If you have an identifier `foo` of type `FooType?` or `FooType!`, don't force-unwrap it to get to the underlying value (`foo!`) if possible.
 </details>
 
-<details><summary>取而代之的，推荐这样做：</summary>Instead, prefer this:</details>
+<details><summary>推荐用下面的做法代替：</summary>Instead, prefer this:</details>
 
 ```swift
 if let foo = foo {
@@ -150,7 +150,7 @@ if let foo = foo {
 }
 ```
 
-<details><summary>或者使用可选链，比如：</summary>
+<details><summary>或者使用可选链式调用，比如：</summary>
 
 Alternatively, you might want to use Swift's Optional Chaining in some of these cases, such as:
 </details>
@@ -160,7 +160,7 @@ Alternatively, you might want to use Swift's Optional Chaining in some of these 
 foo?.callSomethingIfFooIsNotNil()
 ```
 
-<details><summary><i>理由：</i> <code>if let</code> 绑定可选类型使得代码更安全，强行展开很可能导致运行时崩溃。</summary>
+<details><summary><i>理由：</i> <code>if let</code> 绑定可选类型使得代码更安全，强行解包可能导致运行时崩溃。</summary>
 
 _Rationale:_ Explicit `if let`-binding of optionals results in safer code. Force unwrapping is more prone to lead to runtime crashes.
 </details>
@@ -172,7 +172,7 @@ _Rationale:_ Explicit `if let`-binding of optionals results in safer code. Force
 Where possible, use `let foo: FooType?` instead of `let foo: FooType!` if `foo` may be nil (Note that in general, `?` can be used instead of `!`).
 </details>
 
-<details><summary><i>理由：</i> 明确的可选类型使得代码更安全。隐式解析的可选类型也可能会挂掉。</summary>
+<details><summary><i>理由：</i> 明确的可选类型使得代码更安全。隐式解包的可选类型也可能会挂掉。</summary>
 
 _Rationale:_ Explicit optionals result in safer code. Implicitly unwrapped optionals have the potential of crashing at runtime.
 </details>
@@ -222,7 +222,7 @@ _Rationale:_ The intent and meaning of the first version are clear, and results 
 
 <h3><details><summary>对于顶级定义，永远明确的列出权限控制</summary>Always specify access control explicitly for top-level definitions</details></h3>
 
-<details><summary>顶级函数，类型和变量，永远应该有着详尽的权限控制说明符</summary>
+<details><summary>顶级函数，类型和变量，需要有详尽的权限控制说明符</summary>
 
 Top-level functions, types, and variables should always have explicit access control specifiers:
 </details>
@@ -242,7 +242,7 @@ internal struct TheFez {
 }
 ```
 
-<details><summary><i>理由：</i> 很少有将顶级定义指定为 <code>internal</code> 的合适场景，这样做的时候要确保经过了仔细的判断。在定义的内部重用同样的权限控制说明符就显得多余，而且默认的通常是合理的。</summary>
+<details><summary><i>理由：</i> 很少有合适的场景可以将顶级定义指定为 <code>internal</code> ，这样做的时候要确保经过了仔细的判断。在定义的内部重用同样的权限控制说明符就显得多余，而且默认的通常是合理的。</summary>
 
 _Rationale:_ It's rarely appropriate for top-level definitions to be specifically `internal`, and being explicit ensures that careful thought goes into that decision. Within a definition, reusing the same access control specifier is just duplicative, and the default is usually reasonable.
 </details>
@@ -303,7 +303,7 @@ private class History {
 }
 ```
 
-<details><summary>必要的时候再加上 <code>self</code>, 比如在（逃逸）闭包里，或者参数名冲突的情况下：</summary>
+<details><summary>必要的时候再加上 <code>self</code>, 比如在闭包里，或者参数名冲突的情况下：</summary>
 
 Only include the explicit keyword when required by the language—for example, in a closure, or when parameter names conflict:
 </details>
@@ -332,12 +332,12 @@ _Rationale:_ This makes the capturing semantics of `self` stand out more in clos
 Prefer structs over classes
 </details></h3>
 
-<details><summary>除非你需要 <code>class</code> 才能提供的功能（比如 identity 或 <code>deinit</code>ializers），否则就使用 <code>struct</code></summary>
+<details><summary>除非需要 <code>class</code> 才能提供的功能（比如 identity 或 <code>deinit</code>ializers），否则尽量用 <code>struct</code></summary>
 
 Unless you require functionality that can only be provided by a class (like identity or deinitializers), implement a struct instead.
 </details>
 
-<details><summary>要注意到继承通常 <strong>不</strong> 是用 类 的理由，因为 多态 可以通过 协议 实现，重用 可以通过 组合 实现。</summary>
+<details><summary>要注意到继承通常 <strong>不</strong> 是用类的理由，因为多态可以通过协议实现，重用可以通过组合实现。</summary>
 
 Note that inheritance is (by itself) usually _not_ a good reason to use classes, because polymorphism can be provided by protocols, and implementation reuse can be provided through composition.
 </details>
@@ -373,7 +373,7 @@ class Car: Vehicle {
 }
 ```
 
-<details><summary>可以重构成酱紫：</summary>
+<details><summary>可以重构成下面这样：</summary>
 
 could be refactored into these definitions:
 </details>
@@ -417,7 +417,7 @@ Classes should start as `final`, and only be changed to allow subclassing if a v
 _Rationale:_ Composition is usually preferable to inheritance, and opting _in_ to inheritance hopefully means that more thought will be put into the decision.
 </details>
 
-<h3><details><summary>能不写类型参数的就别写了</summary>
+<h3><details><summary>能不写类型参数的尽量省略</summary>
 
 Omit type parameters where possible
 </details></h3>
@@ -457,7 +457,7 @@ _Rationale:_ Omitting redundant type parameters clarifies the intent, and makes 
 Use whitespace around operator definitions
 </details></h3>
 
-<details><summary>当定义操作符时，两边留空格。不要酱紫：</summary>
+<details><summary>当定义操作符时，两边留空格。不要这样：</summary>
 
 Use whitespace around operators when defining them. Instead of:
 </details>
@@ -474,7 +474,7 @@ func <| (lhs: Int, rhs: Int) -> Int
 func <|< <A>(lhs: A, rhs: A) -> A
 ```
 
-<details><summary><i>理由：</i> 操作符 由标点字符组成，如果后面直接跟随类型或者参数值，会让代码非常难读。加上空格分开他们就清晰了</summary>
+<details><summary><i>理由：</i> 操作符由标点字符组成，如果后面直接跟随类型或者参数值，会让代码非常难读。加上空格分开他们就清晰了</summary>
 
 _Rationale:_ Operators consist of punctuation characters, which can make them difficult to read when immediately followed by the punctuation for a type or value parameter list. Adding whitespace separates the two more clearly.
 </details>
